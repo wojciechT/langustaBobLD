@@ -1,0 +1,11 @@
+  +------------+ wydarzenia +------+ 
+  | Środowisko |<---------->|      | 
+  +------------+            |      | wydarzenia +---------------+ odświeżanie +--------------+
+          |?                | Stan |----------->| Interpretacja |------------>| Wyświetlanie |
+  +------------+ wydarzenia |      |            +---------------+             +--------------+
+  | Gracz      |<---------->|      |           \_________________/           \________________/
+  +------------+            +------+                   |                              |
+\_____________________________________/                |                              |
+                 |                                     |  Palinurus 1976 Console Graphics Engine
+                 |                                     |
+    Langusta Bob Low Definition Core          Langusta Bob - Palinurus Integration Layer
