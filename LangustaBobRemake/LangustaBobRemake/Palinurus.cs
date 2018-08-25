@@ -10,6 +10,7 @@ namespace LangustaBobRemake
         private int _topOffset;
         private readonly int _maximumLeftOffset;
         private readonly int _maximumTopOffset;
+        private Orientation _orientation;
 
         public int LeftOffset
         {
@@ -31,10 +32,19 @@ namespace LangustaBobRemake
                                                 : value;
         }
 
+        public static readonly string[] CharacterRepresentationFacingRight = { "~┐┐┐ ", "├├██>", "~┘┘┘ "};
+
+        public static readonly string[] CharacterRepresentationFacingLeft = { " ┌┌┌~", "<██┤┤", " └└└~" };
+
+        public string[] CharacterRepresentation => _orientation == Orientation.Right
+                                                        ? CharacterRepresentationFacingRight
+                                                        : CharacterRepresentationFacingLeft;
+
         public Palinurus(Coordinates offset,Coordinates screenResolution)
         {
             _maximumLeftOffset = screenResolution.Left - 1;
             _maximumTopOffset = screenResolution.Top - 1;
+            _orientation = Orientation.Right;
 
             LeftOffset = offset.Left;
             TopOffset = offset.Top;
@@ -45,9 +55,11 @@ namespace LangustaBobRemake
             switch (direction)
             {
                 case MovementDirection.Right:
+                    _orientation = Orientation.Right;
                     LeftOffset += 1;
                     break;
                 case MovementDirection.Left:
+                    _orientation = Orientation.Left;
                     LeftOffset -= 1;
                     break;
                 case MovementDirection.Down:
@@ -61,5 +73,10 @@ namespace LangustaBobRemake
             }
         }
 
+        enum Orientation
+        {
+            Right,
+            Left,
+        }
     }
 }

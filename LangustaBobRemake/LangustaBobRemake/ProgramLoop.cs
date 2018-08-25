@@ -36,15 +36,20 @@ namespace LangustaBobRemake
         }
         public void Run()
         {
+            var exit = false;
             SetResolution(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
             var screenResolution = new Coordinates(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
-            var palinurusPosition = new Coordinates(0, GetStartingPalinurusTopOffset(RESOLUTION_HEIGHT));
-            var palinurus = new Palinurus(palinurusPosition, screenResolution);
 
-            while (true)
+            var gameState = new GameState(screenResolution);
+            var palinurus = gameState.Palinurus;
+
+            while (!exit)
             {
-                DrawPalinurus(palinurus);
-
+                //Console.Beep(37, 300);
+                //Console.Beep(200, 300);
+                //Console.Beep(440, 300);
+                
+                DrawWorld(palinurus, gameState);
                 var keyPressed = Console.ReadKey(true);
                 switch (keyPressed.Key)
                 {
@@ -55,36 +60,43 @@ namespace LangustaBobRemake
                         palinurus.Move(MovementDirection.Up);
                         break;
                     case ConsoleKey.RightArrow:
-                        palinurus.Move(MovementDirection.Right);
+                        if (gameState.PalinurusCanMove(MovementDirection.Right)) palinurus.Move(MovementDirection.Right);
+                        Console.WriteLine(gameState.PalinurusCanMove(MovementDirection.Right));
                         break;
                     case ConsoleKey.LeftArrow:
-                        palinurus.Move(MovementDirection.Left);
+                        if (gameState.PalinurusCanMove(MovementDirection.Right)) palinurus.Move(MovementDirection.Left);
+                        Console.WriteLine(gameState.PalinurusCanMove(MovementDirection.Left));
+                        break;
+                    case ConsoleKey.Escape:
+                        exit = true;
                         break;
                     default:
                         Console.WriteLine("Proszę nie pisać głupot.");
                         break;
                 }
-
-
             }
         }
 
-        private void DrawPalinurus(Palinurus palinurus)
+        private void DrawWorld(Palinurus palinurus, GameState gameState)
         {
             Console.Clear();
+            gameState.Draw();
             Console.CursorLeft = palinurus.LeftOffset;
             Console.CursorTop = palinurus.TopOffset;
-            Console.Write("O");
+            foreach (var line in palinurus.CharacterRepresentation)
+            {
+                Console.Write($"{line}\n");
+                Console.CursorLeft = palinurus.LeftOffset;
+            }
         }
-
-        private int GetStartingPalinurusTopOffset(int resolutionHeight) => resolutionHeight / 2;
 
         private void SetResolution(int resolutionWidth, int resolutionHeight)
         {
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetWindowSize(RESOLUTION_WIDTH+SAFETY_MARGIN, RESOLUTION_HEIGHT);
-            Console.SetBufferSize(RESOLUTION_WIDTH+SAFETY_MARGIN, RESOLUTION_HEIGHT);
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.SetWindowSize(resolutionWidth + SAFETY_MARGIN, resolutionHeight);
+            Console.SetBufferSize(resolutionWidth + SAFETY_MARGIN, resolutionHeight);
         }
 
     }
