@@ -21,8 +21,9 @@ namespace LangustaBobRemake
             _gameMap = new GameMap();
             var palinurusPosition = new Coordinates(0, GetStartingPalinurusTopOffset(screenResolution.Top));
             Palinurus = new Palinurus(palinurusPosition, screenResolution);
-            var wallOne = new Wall(new Coordinates(20,20));
-            _gameMap.CurrentMap[new Coordinates(20, 20)] = wallOne;
+            var wallOnecoordinates = new Coordinates(10, 20);
+            var wallOne = new Wall(wallOnecoordinates);
+            _gameMap.CurrentMap[wallOnecoordinates] = wallOne;
         }
 
         public void Draw()
@@ -48,7 +49,7 @@ namespace LangustaBobRemake
                     for (var i = 0; i < 5; i++)
                     {
                         if (!_gameMap.CurrentMap.ContainsKey(new Coordinates(Palinurus.LeftOffset + 5,
-                            Palinurus.TopOffset - 2 + i))) continue;
+                            Palinurus.TopOffset - 2 + i))) continue;                        
                         if (_gameMap.CurrentMap[
                                 new Coordinates(Palinurus.LeftOffset + 5, Palinurus.TopOffset - 2 + i)].Category ==
                             ObjectCategory.DumbStand)
@@ -60,10 +61,10 @@ namespace LangustaBobRemake
                 case MovementDirection.Left:
                     for (var i = 0; i < 5; i++)
                     {
-                        if (!_gameMap.CurrentMap.ContainsKey(new Coordinates(Palinurus.LeftOffset - 1,
+                        if (!_gameMap.CurrentMap.ContainsKey(new Coordinates(Palinurus.LeftOffset - 5,
                             Palinurus.TopOffset - 2 + i))) continue;
                         if (_gameMap.CurrentMap[
-                                new Coordinates(Palinurus.LeftOffset - 1, Palinurus.TopOffset - 2 + i)].Category ==
+                                new Coordinates(Palinurus.LeftOffset - 5, Palinurus.TopOffset - 2 + i)].Category ==
                             ObjectCategory.DumbStand)
                         {
                             return false;
@@ -71,8 +72,30 @@ namespace LangustaBobRemake
                     }
                     break;
                 case MovementDirection.Down:
+                    for (var i = 0; i < 9; i++)
+                    {
+                        if (!_gameMap.CurrentMap.ContainsKey(new Coordinates(Palinurus.LeftOffset - 4 + i,
+                            Palinurus.TopOffset + 3))) continue;
+                        if (_gameMap.CurrentMap[
+                                new Coordinates(Palinurus.LeftOffset - 4 + i, Palinurus.TopOffset + 3)].Category ==
+                            ObjectCategory.DumbStand)
+                        {
+                            return false;
+                        }
+                    }
                     break;
                 case MovementDirection.Up:
+                    for (var i = 0; i < 9; i++)
+                    {
+                        if (!_gameMap.CurrentMap.ContainsKey(new Coordinates(Palinurus.LeftOffset - 4 + i,
+                            Palinurus.TopOffset - 3))) continue;
+                        if (_gameMap.CurrentMap[
+                                new Coordinates(Palinurus.LeftOffset - 4 + i, Palinurus.TopOffset - 3)].Category ==
+                            ObjectCategory.DumbStand)
+                        {
+                            return false;
+                        }
+                    }
                     break;
             }
             return true;

@@ -15,6 +15,33 @@ namespace LangustaBobRemake
 
     internal class Coordinates
     {
+        public static bool operator ==(Coordinates A, Coordinates B)
+        {
+            return object.Equals(A, B);
+        }
+        public static bool operator !=(Coordinates A, Coordinates B)
+        {
+            return !object.Equals(A, B);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (ReferenceEquals(obj, this))
+                return true;
+            if (obj.GetType() != this.GetType())
+                return false;
+
+            Coordinates rhs = obj as Coordinates;
+            return rhs.Left==this.Left&& rhs.Top==this.Top;
+
+        }
+        public override int GetHashCode()
+        {
+            return this.Left.GetHashCode() ^ this.Top.GetHashCode();
+        }
+
         public int Left { get; }
         public int Top { get; }
         public Coordinates(int left, int top)
@@ -54,18 +81,16 @@ namespace LangustaBobRemake
                 switch (keyPressed.Key)
                 {
                     case ConsoleKey.DownArrow:
-                        palinurus.Move(MovementDirection.Down);
+                        if (gameState.PalinurusCanMove(MovementDirection.Down)) palinurus.Move(MovementDirection.Down);
                         break;
                     case ConsoleKey.UpArrow:
-                        palinurus.Move(MovementDirection.Up);
+                        if (gameState.PalinurusCanMove(MovementDirection.Up)) palinurus.Move(MovementDirection.Up);
                         break;
                     case ConsoleKey.RightArrow:
                         if (gameState.PalinurusCanMove(MovementDirection.Right)) palinurus.Move(MovementDirection.Right);
-                        Console.WriteLine(gameState.PalinurusCanMove(MovementDirection.Right));
                         break;
                     case ConsoleKey.LeftArrow:
-                        if (gameState.PalinurusCanMove(MovementDirection.Right)) palinurus.Move(MovementDirection.Left);
-                        Console.WriteLine(gameState.PalinurusCanMove(MovementDirection.Left));
+                        if (gameState.PalinurusCanMove(MovementDirection.Left)) palinurus.Move(MovementDirection.Left);
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
