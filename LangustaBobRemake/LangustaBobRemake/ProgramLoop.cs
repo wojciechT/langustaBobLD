@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
+using PalinurusEngine;
+
 namespace LangustaBobRemake
 {
     public enum MovementDirection
@@ -106,6 +108,16 @@ namespace LangustaBobRemake
         {
             Console.Clear();
             gameState.Draw();
+
+            var t1 = new Types.ColouredChar('~', ConsoleColor.White, ConsoleColor.Cyan);
+            
+            Types.ColouredChar[] top = { t1, t1, t1, t1, t1 };
+
+            var palinurusRep = new Types.ThingRepresentation(top, top, top);
+            var palPos = new Types.Position(0, 0);
+
+            Drawing.postDrawRequest(palinurusRep, palPos);
+            
             Console.CursorLeft = palinurus.LeftOffset;
             Console.CursorTop = palinurus.TopOffset;
             foreach (var line in palinurus.CharacterRepresentation)

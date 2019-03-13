@@ -32,9 +32,9 @@ namespace LangustaBobRemake
                                                 : value;
         }
 
-        public static readonly string[] CharacterRepresentationFacingRight = { "~┐┐┐ ", "├├██>", "~┘┘┘ "};
+        public static readonly string[] CharacterRepresentationFacingRight = { "~┐┐┐ ", "├├██<", "~┘┘┘ "};
 
-        public static readonly string[] CharacterRepresentationFacingLeft = { " ┌┌┌~", "<██┤┤", " └└└~" };
+        public static readonly string[] CharacterRepresentationFacingLeft = { " ┌┌┌~", ">██┤┤", " └└└~" };
 
         public string[] CharacterRepresentation => _orientation == Orientation.Right
                                                         ? CharacterRepresentationFacingRight

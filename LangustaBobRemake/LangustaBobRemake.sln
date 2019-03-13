@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangustaBobRemake", "LangustaBobRemake\LangustaBobRemake.csproj", "{F567FC4B-7346-459C-B20E-1C7F4B4D26EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangustaBobRemake", "LangustaBobRemake\LangustaBobRemake.csproj", "{F567FC4B-7346-459C-B20E-1C7F4B4D26EA}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PalinurusEngine", "PalinurusEngine\PalinurusEngine.fsproj", "{04DA0B87-8A5C-4A19-AA93-DF360B82FF51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F567FC4B-7346-459C-B20E-1C7F4B4D26EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F567FC4B-7346-459C-B20E-1C7F4B4D26EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F567FC4B-7346-459C-B20E-1C7F4B4D26EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04DA0B87-8A5C-4A19-AA93-DF360B82FF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DA0B87-8A5C-4A19-AA93-DF360B82FF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DA0B87-8A5C-4A19-AA93-DF360B82FF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DA0B87-8A5C-4A19-AA93-DF360B82FF51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
